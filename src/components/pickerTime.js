@@ -2,7 +2,7 @@ import { DatePickerInput } from '@momo-platform/component-kits';
 import { View, Text, Image } from 'react-native';
 import React from 'react';
 import moment from 'moment';
-import { MINUTES_ARRAY } from '../constant';
+import { MINUTES_ARRAY } from '../constants/index';
 import { iconPickerTime } from '../assets/images/index';
 import styles from './styles';
 

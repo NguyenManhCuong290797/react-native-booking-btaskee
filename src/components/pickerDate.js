@@ -2,7 +2,7 @@ import { View, TouchableOpacity, ScrollView, Text } from 'react-native';
 import React, { useMemo, useState } from 'react';
 import 'moment/locale/vi';
 import moment from 'moment';
-import { COLOR, Spacing } from '../constants';
+import { COLOR, Spacing } from '../constants/index';
 import styles from './styles';
 
 const LIMIT_DATE = 7;

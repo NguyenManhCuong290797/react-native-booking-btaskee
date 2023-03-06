@@ -1,6 +1,6 @@
 import { TouchableOpacity, Text } from 'react-native';
 import React, { useState } from 'react'
-import { COLOR, LIST_DURATION, Spacing } from '../constants';
+import { COLOR, LIST_DURATION, Spacing } from '../constants/index';
 import styles from './styles';
 
 export default Duration = (props) => {
