@@ -71,7 +71,7 @@ function Booking({
                         <Image
                             cached
                             {...imageAddressStyle}
-                            source={...locationImageProps}
+                            source={locationImageProps ? {...locationImageProps} : ''}
                         />
                         {
                             shouldRenderAddress
