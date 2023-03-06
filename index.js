@@ -1,5 +1,4 @@
-import { MODE, LIST_MODE, DROPDOWN_DIRECTION, LANGUAGE, TRANSLATIONS } from './src/constants';
-import THEMES from './src/themes';
+import { MODE, LIST_MODE, DROPDOWN_DIRECTION, LANGUAGE } from './src/constants';
 import Picker from './src/components/Picker';
 
 Picker.MODE = MODE;
@@ -22,22 +21,5 @@ Picker.setLanguage = (language) => {
     LANGUAGE.DEFAULT = language;
 }
 
-Picker.addTranslation = (language, translation) => {
-    TRANSLATIONS[language] = translation;
-}
-
-Picker.modifyTranslation = (language, translation) => {
-    if (TRANSLATIONS.hasOwnProperty(language)) {
-        TRANSLATIONS[language] = {...TRANSLATIONS[language], ...translation};
-    }
-}
-
-Picker.THEMES = THEMES;
-Picker.setTheme = (name) => {
-    Picker.THEMES.DEFAULT = name;
-}
-Picker.addTheme = (name, theme) => {
-    Picker.THEMES[name] = theme;
-}
 
 export default Picker;

@@ -1,9 +1,7 @@
 import {I18nManager} from 'react-native';
 
-import TRANSLATIONS from '../translations';
 import Colors from './colors';
 
-export {TRANSLATIONS};
 
 export const SCHEMA = {
     label: 'label',
@@ -104,19 +102,6 @@ export const RTL_STYLE = (rtl, style) => {
     }
 
     return newStyle;
-}
-
-export const GET_TRANSLATION = (key, language = LANGUAGE.DEFAULT, customTranslation = {}) => {
-    try {
-        const data = {...TRANSLATIONS[language], ...customTranslation}[key];
-
-        if (typeof data === 'undefined')
-            throw Error();
-
-        return data;
-    } catch (e) {
-        return {...TRANSLATIONS[LANGUAGE.FALLBACK], ...customTranslation}[key];
-    }
 }
 
 export const BADGE_COLORS = [Colors.ALTO];

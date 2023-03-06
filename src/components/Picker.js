@@ -34,7 +34,6 @@ import {
     BADGE_COLORS,
     BADGE_DOT_COLORS,
     ASCII_CODE,
-    TRANSLATIONS,
     MODE,
     LIST_MODE,
     DROPDOWN_DIRECTION,
@@ -519,23 +518,13 @@ function Picker({
         return necessaryItems.filter(item => _value.includes(item[_schema.value]));
     }, [necessaryItems, _value, _schema, multiple]);
 
-    /**
-     * The language.
-     * @returns {string}
-     */
-    const _language = useMemo(() => {
-        if (TRANSLATIONS.hasOwnProperty(language))
-            return language;
-
-        return LANGUAGE.FALLBACK;
-    }, [language]);
 
     /**
      * Get translation.
      */
     const _ = useCallback((key) => {
-        return GET_TRANSLATION(key, _language, translation);
-    }, [_language, translation]);
+        return GET_TRANSLATION(key, '', '');
+    }, []);
 
     /**
      * The placeholder.
