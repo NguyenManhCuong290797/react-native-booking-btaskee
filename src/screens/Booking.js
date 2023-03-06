@@ -111,7 +111,7 @@ function Booking({
                 <PickerTime
                     date={dateProps ? {...dateProps} : dateDefault}
                     onChange={(date) => changeDateTime(date)}
-                    navigator={...navigatorProps}
+                    navigator={navigatorProps ? {...navigatorProps} : ''}
                 />
 
                 {/* Note */}

@@ -31,7 +31,7 @@ export default PickerTime = (props) => {
       </View>
 
       <DatePickerInput
-        navigator={props.navigator}
+        navigator={props?.navigator}
         onSelected={(value) => onChangeTime(value)}
         defaultDate={"14:30"}
         format="hh:mm"
