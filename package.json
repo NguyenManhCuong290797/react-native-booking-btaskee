@@ -1,6 +1,6 @@
 {
-  "name": "react-native-sdk-booking-v1",
-  "version": "0.0.6",
+  "name": "react-native-screen-booking-btaskee-v1",
+  "version": "0.0.1",
   "description": "A single / multiple, categorizable, customizable, localizable and searchable item booking component for react native which supports both Android & iOS.",
   "keywords": [
     "booking",
