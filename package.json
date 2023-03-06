@@ -1,5 +1,5 @@
 {
-  "name": "react-native-dropdown-select-list",
+  "name": "react-native-booking",
   "version": "2.0.3",
   "description": "⭐ React Native Select List Equivalent to Html's Select with options\"",
   "main": "index.ts",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danish1658/react-native-dropdown-select-list.git"
+    "url": "git+https://github.com/NguyenManhCuong290797/react-native-booking-btaskee.git"
   },
   "keywords": [
     "picker",
@@ -41,10 +41,10 @@
     "@types/react-native": "^0.70.6",
     "typescript": "^4.8.4"
   },
-  "author": "Danish Amin Dar",
+  "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/danish1658/react-native-dropdown-select-list/issues"
+    "url": "https://github.com/NguyenManhCuong290797/react-native-booking-btaskee/issues"
   },
-  "homepage": "https://github.com/danish1658/react-native-dropdown-select-list#readme"
+  "homepage": "https://github.com/NguyenManhCuong290797/react-native-booking-btaskee/blob/main/README.md"
 }
