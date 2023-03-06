@@ -28,6 +28,10 @@ import { Duration, KeyboardAware, PickerTime, PickerDate } from '../components';
 import { COLOR, Spacing } from '../constants/index';
 const { height: WINDOW_HEIGHT } = Dimensions.get('window');
 
+// hours, minutes default
+const HOURS_INDEX = 14;
+const MINUTES_INDEX = 30;
+
 function Booking({
     containerAddress = {},
     addressStyle = {},
@@ -57,6 +61,12 @@ function Booking({
     shouldRenderFooter = () => { },
 
 }) {
+    let dateDefault = moment(moment().add(1, 'day').toDate())
+    .hour(HOURS_INDEX)
+    .minute(MINUTES_INDEX)
+    .second(0)
+    .millisecond(0)
+    .toDate();
 
     return (
         <>
@@ -87,19 +97,19 @@ function Booking({
                 {/* Duration */}
                 <Text {...durationStyle}>{textDuration}</Text>
                 <Duration
-                    duration={...durationProps}
+                    duration={durationProps ? {...durationProps} : 3}
                     changeDuration={(value) => changeDuration(value)}
                 />
 
                 {/* Time */}
                 <Text {...timeStyle}>{textTime}</Text>
                 <PickerDate
-                    date={...dateProps}
+                    date={dateProps ? {...dateProps} : dateDefault}
                     onChange={(date) => changeDateTime(date)}
                 />
 
                 <PickerTime
-                    date={...dateProps}
+                    date={dateProps ? {...dateProps} : dateDefault}
                     onChange={(date) => changeDateTime(date)}
                     navigator={...navigatorProps}
                 />
@@ -109,7 +119,7 @@ function Booking({
                 <TextInput
                     onChangeText={(text) => handleChangeTaskNote(text)}
                     onBlur={handleSaveTaskNote}
-                    defaultValue={...noteProps}
+                    defaultValue={noteProps ? {...noteProps} : ''}
                     multiline={true}
                     numberOfLines={12}
                     placeholder='Bạn có yêu cầu gì thêm, hãy nhập ở đây nhé!'
