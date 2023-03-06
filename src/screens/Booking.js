@@ -34,6 +34,7 @@ const HOURS_INDEX = 14;
 const MINUTES_INDEX = 30;
 
 function Booking({
+    containerProps = {},
     containerAddress = {},
     addressStyle = {},
     textAddress = null,
