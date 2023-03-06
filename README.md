@@ -1,4 +1,4 @@
-# React Native Dropdown Picker 5.x
+# React-Native-Booking-Btaskee
 
 <p float="left">
     <img src="https://user-images.githubusercontent.com/56504893/116790110-e0b36880-aac7-11eb-9ebd-196acee64f7a.png" width="270" alt="Screenshot">
@@ -9,19 +9,17 @@
 The example in the screenshots: https://snack.expo.dev/8mHmLfcZf
 
 # Documentation
-**Visit https://hossein-zare.github.io/react-native-dropdown-picker-website/**
-
 # Merge and Release Process
 
 ## Branches in use
 
 ### Development
 
-PRs should be made against and merged into the [`dev-5.x`](https://github.com/hossein-zare/react-native-dropdown-picker) branch, which is set as the `default` branch on github.
+PRs should be made against and merged into the [`dev-5.x`](https://github.com/NguyenManhCuong290797/react-native-booking-btaskee.git) branch, which is set as the `default` branch on github.
 
 ### Release
 
-Releases are currently made from the [`5.x`](https://github.com/hossein-zare/react-native-dropdown-picker/tree/5.x) branch.
+Releases are currently made from the [`5.x`](https://github.com/NguyenManhCuong290797/react-native-booking-btaskee.git) branch.
 
 ## Release Process
 
