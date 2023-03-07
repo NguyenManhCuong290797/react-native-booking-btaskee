@@ -161,7 +161,7 @@ function Booking({
                 <Text style={durationStyle} {...textProps}>{textDuration}</Text>
                 <Duration
                     duration={valueDurationProps ? valueDurationProps : 3}
-                    changeDuration={(value) => changeDuration(value)}
+                    changeDuration={(value) => props?.changeDuration(value)}
                     {...durationProps}
                 />
 
@@ -169,13 +169,13 @@ function Booking({
                 <Text style={timeStyle} {...textProps}>{textTime}</Text>
                 <PickerDate
                     date={dateProps ? dateProps : dateDefault}
-                    onChange={(date) => changeDateTime(date)}
+                    onChange={(date) => props?.changeDateTime(date)}
                     {...dateTimeProps}
                 />
 
                 <PickerTime
                     date={dateProps ? dateProps : dateDefault}
-                    onChange={(date) => changeDateTime(date)}
+                    onChange={(date) => props?.changeDateTime(date)}
                     navigator={navigatorProps ? navigatorProps : ''}
                     {...dateTimeProps}
                 />
@@ -183,7 +183,7 @@ function Booking({
                 {/* Note */}
                 <Text style={noteStyle} {...textProps}>{textNote}</Text>
                 <Input
-                    onChangeText={(text) => handleChangeTaskNote(text)}
+                    onChangeText={(text) => props?.handleChangeTaskNote(text)}
                     onBlur={handleSaveTaskNote}
                     defaultValue={noteProps ? noteProps : ''}
                     multiline={true}
