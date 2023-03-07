@@ -1,5 +1,5 @@
 {
-  "name": "react-native-sdk-screen-booking-house-cleaning",
+  "name": "@btaskee/sdk-screen-booking-house-cleaning",
   "version": "0.0.1",
   "description": "A single / multiple, categorizable, customizable, localizable and searchable item booking component for react native which supports both Android & iOS.",
   "keywords": [
