@@ -183,7 +183,7 @@ function Booking({
                 {/* Note */}
                 <Text style={noteStyle} {...textProps}>{textNote}</Text>
                 <Input
-                    onChangeText={(text) => props?.handleChangeTaskNote(text)}
+                    onChangeText={(text) => handleChangeTaskNote(text)}
                     onBlur={handleSaveTaskNote}
                     defaultValue={noteProps ? noteProps : ''}
                     multiline={true}
