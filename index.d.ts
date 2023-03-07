@@ -8,6 +8,7 @@ declare module 'react-native-sdk-booking-v1' {
     ViewProps,
     ViewStyle,
     ImageStyle,
+    TouchableOpacityProps,
   } from 'react-native';
 
   export type ValueType = string | number | boolean;
@@ -22,6 +23,7 @@ declare module 'react-native-sdk-booking-v1' {
 
   interface ScreenBookingBaseProps<T> {
     containerProps?: ViewProps;
+    keyboardProps?: ViewProps;
     addressStyle?: StyleProp<TextStyle>;
     textAddress?: string;
     containerAddress?: StyleProp<ViewStyle>;
@@ -34,7 +36,7 @@ declare module 'react-native-sdk-booking-v1' {
     textChangeAddress?: string;
     durationStyle?: StyleProp<TextStyle>;
     textDuration?: string;
-    durationProps?: string;
+    valueDurationProps?: string;
     changeDuration?: (e: LayoutChangeEvent) => void;
     timeStyle?: StyleProp<TextStyle>;
     textTime?: string;
@@ -48,6 +50,30 @@ declare module 'react-native-sdk-booking-v1' {
     noteProps?: string;
     inputNoteStyle?: StyleProp<TextInputProps>;
     shouldRenderFooter?: (props: RenderFooterPropsInterface<T>) => JSX.Element;
+    textProps?: StyleProp<TextStyle>;
+    viewContainerProps?: StyleProp<ViewStyle>;
+    viewContentProps?: StyleProp<ViewStyle>;
+    imageProps?: StyleProp<ImageStyle>;
+    touchableStyle?: StyleProp<TouchableOpacityProps>;
+    touchableProps?: StyleProp<TouchableOpacityProps>;
+    textTouchProps?: StyleProp<TextStyle>;
+    durationProps?: ViewProps;
+    dateTimeProps?: ViewProps;
+    inputProps?: StyleProp<TextInputProps>;
+    footerStyleProps?: ViewProps;
+    goConfirm?: () => void;
+    priceButtonStyleProps?: StyleProp<TouchableOpacityProps>;
+    textPriceStyleProps?: StyleProp<TextStyle>;
+    textPricePromotionStyleProps?: StyleProp<TextStyle>;
+    textVND?: string;
+    textContinue?: string;
+    viewRenderAddressStyleProps?: ViewProps;
+    textRenderAddressStyleProps?: StyleProp<TextStyle>;
+    viewAddressStyleProps?: ViewProps;
+    textAddressStyleProps?: StyleProp<TextStyle>;
+    textAddressOption?: string;
+    
+    props?: object;
   }
 
   interface ScreenBookingSingleProps<T> {

@@ -7,13 +7,12 @@ import React, {
     memo,
     Fragment,
 } from 'react';
-
+import moment from 'moment';
+import _ from 'lodash';
+import { Text, Image, Input, TouchableOpacity } from '@momo-platform/component-kits';
 import {
     View,
     SafeAreaView,
-    TouchableOpacity,
-    Text,
-    Image,
     FlatList,
     TextInput,
     Dimensions,
@@ -41,13 +40,12 @@ function Booking({
     contentAddress = {},
     imageAddressStyle = {},
     locationImageProps = null,
-    shouldRenderAddress = () => { },
     goChooseAddress = () => { },
     changeAddress = {},
     textChangeAddress = null,
     durationStyle = {},
     textDuration = null,
-    durationProps = null,
+    valueDurationProps = null,
     changeDuration = (duration) => { },
     timeStyle = {},
     textTime = null,
@@ -59,31 +57,93 @@ function Booking({
     handleChangeTaskNote = (note) => { },
     handleSaveTaskNote = () => { },
     noteProps = null,
+    placeholder = '',
     inputNoteStyle = {},
-    shouldRenderFooter = () => { },
 
+    keyboardProps = {},
+    textProps = {},
+    viewContainerProps = {},
+    viewContentProps = {},
+    imageProps = {},
+    touchableStyle = {},
+    touchableProps = {},
+    textTouchProps = {},
+    durationProps = {},
+    dateTimeProps = {},
+    inputProps = {},
+    footerStyleProps = {},
+    goConfirm = () => { },
+    priceButtonStyleProps = {},
+    textPriceStyleProps = {},
+    textPricePromotionStyleProps = {},
+    textVND = '',
+    textContinue = '',
+    viewRenderAddressStyleProps = {},
+    textRenderAddressStyleProps = {},
+    viewAddressStyleProps = {},
+    textAddressStyleProps = {},
+    textAddressOption = '',
+
+    props = {},
 }) {
     let dateDefault = moment(moment().add(1, 'day').toDate())
-    .hour(HOURS_INDEX)
-    .minute(MINUTES_INDEX)
-    .second(0)
-    .millisecond(0)
-    .toDate();
+        .hour(HOURS_INDEX)
+        .minute(MINUTES_INDEX)
+        .second(0)
+        .millisecond(0)
+        .toDate();
+
+    const shouldRenderAddress = useMemo(() => {
+        if (!_.isEmpty(props?.address)) {
+            return <View style={viewRenderAddressStyleProps}>
+                <Text style={textRenderAddressStyleProps}>{props?.address?.shortAddress}</Text>
+                <Text>{props?.address?.address}</Text>
+            </View>
+        }
+        return <View style={viewAddressStyleProps}>
+            <Text style={textAddressStyleProps}>{textAddressOption}</Text>
+        </View>
+    }, [props.address])
+
+    const shouldRenderFooter = useMemo(() => {
+        if (!_.isEmpty(props?.price) && props?.address) {
+            return (
+                <View style={footerStyleProps}>
+                    <TouchableOpacity
+                        onPress={goConfirm}
+                        style={priceButtonStyleProps}
+                    >
+                        <View>
+                            {
+                                (props?.promotion && props?.price?.finalCost !== props?.price?.cost) ?
+                                    <Text.H4 style={[textPriceStyleProps, textPricePromotionStyleProps]}>{formatPrice(props?.price?.cost)} {textVND}</Text.H4> : null
+                            }
+                            <Text.H4 style={textPriceStyleProps}>{formatPrice(props.price?.finalCost)} {textVND}/{props.duration}h</Text.H4>
+                        </View>
+                        <Text.H4 style={textPriceStyleProps}>{textContinue}</Text.H4>
+                    </TouchableOpacity>
+                </View>
+            )
+        };
+        return null;
+    }, [props.price, props.date, props.duration, props.address, props.promotion]);
 
     return (
         <>
             <KeyboardAware
-                {...containerProps}
+                style={containerProps}
                 showsVerticalScrollIndicator={false}
+                {...keyboardProps}
             >
                 {/* Address */}
-                <Text {...addressStyle}>{textAddress}</Text>
-                <View {...containerAddress}>
-                    <View {...contentAddress}>
+                <Text style={addressStyle} {...textProps}>{textAddress}</Text>
+                <View style={containerAddress} {...viewContainerProps}>
+                    <View style={contentAddress} {...viewContentProps}>
                         <Image
                             cached
-                            {...imageAddressStyle}
-                            source={locationImageProps ? {...locationImageProps} : ''}
+                            style={imageAddressStyle}
+                            source={locationImageProps ? locationImageProps : ''}
+                            {...imageProps}
                         />
                         {
                             shouldRenderAddress
@@ -91,41 +151,47 @@ function Booking({
                     </View>
                     <TouchableOpacity
                         onPress={goChooseAddress}
+                        style={touchableStyle}
+                        {...touchableProps}
                     >
-                        <Text {...changeAddress}>{textChangeAddress}</Text>
+                        <Text style={changeAddress} {...textTouchProps}>{textChangeAddress}</Text>
                     </TouchableOpacity>
                 </View>
 
                 {/* Duration */}
-                <Text {...durationStyle}>{textDuration}</Text>
+                <Text style={durationStyle} {...textProps}>{textDuration}</Text>
                 <Duration
-                    duration={durationProps ? {...durationProps} : 3}
+                    duration={valueDurationProps ? valueDurationProps : 3}
                     changeDuration={(value) => changeDuration(value)}
+                    {...durationProps}
                 />
 
                 {/* Time */}
-                <Text {...timeStyle}>{textTime}</Text>
+                <Text style={timeStyle} {...textProps}>{textTime}</Text>
                 <PickerDate
-                    date={dateProps ? {...dateProps} : dateDefault}
+                    date={dateProps ? dateProps : dateDefault}
                     onChange={(date) => changeDateTime(date)}
+                    {...dateTimeProps}
                 />
 
                 <PickerTime
-                    date={dateProps ? {...dateProps} : dateDefault}
+                    date={dateProps ? dateProps : dateDefault}
                     onChange={(date) => changeDateTime(date)}
-                    navigator={navigatorProps ? {...navigatorProps} : ''}
+                    navigator={navigatorProps ? navigatorProps : ''}
+                    {...dateTimeProps}
                 />
 
                 {/* Note */}
-                <Text {...noteStyle}>{textNote}</Text>
-                <TextInput
+                <Text style={noteStyle} {...textProps}>{textNote}</Text>
+                <Input
                     onChangeText={(text) => handleChangeTaskNote(text)}
                     onBlur={handleSaveTaskNote}
-                    defaultValue={noteProps ? {...noteProps} : ''}
+                    defaultValue={noteProps ? noteProps : ''}
                     multiline={true}
                     numberOfLines={12}
-                    placeholder='Bạn có yêu cầu gì thêm, hãy nhập ở đây nhé!'
-                    {...inputNoteStyle}
+                    placeholder={placeholder || 'Bạn có yêu cầu gì thêm, hãy nhập ở đây nhé!'}
+                    style={inputNoteStyle}
+                    {...inputProps}
                 />
             </KeyboardAware>
 
