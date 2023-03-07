@@ -9,7 +9,7 @@ import React, {
 } from 'react';
 import moment from 'moment';
 import _ from 'lodash';
-import { Text, Image, Input, TouchableOpacity } from '@momo-platform/component-kits';
+import { Spacing, Text, Image, Input, TouchableOpacity } from '@momo-platform/component-kits';
 import {
     View,
     SafeAreaView,
@@ -26,6 +26,7 @@ import {
 import { Duration, KeyboardAware, PickerTime, PickerDate } from '../components';
 import { COLOR, Spacing } from '../constants/index';
 const { height: WINDOW_HEIGHT } = Dimensions.get('window');
+import styles from './styles';
 
 // hours, minutes default
 const HOURS_INDEX = 14;
@@ -94,32 +95,32 @@ function Booking({
 
     const shouldRenderAddress = useMemo(() => {
         if (!_.isEmpty(props?.address)) {
-            return <View style={viewRenderAddressStyleProps}>
-                <Text style={textRenderAddressStyleProps}>{props?.address?.shortAddress}</Text>
+            return <View style={{ marginLeft: Spacing.S  }}>
+                <Text style={{ fontWeight: 'bold', marginBottom: Spacing.S }}>{props?.address?.shortAddress}</Text>
                 <Text>{props?.address?.address}</Text>
             </View>
         }
-        return <View style={viewAddressStyleProps}>
-            <Text style={textAddressStyleProps}>{textAddressOption}</Text>
+        return <View style={{ marginLeft: Spacing.S, alignSelf: 'center' }}>
+            <Text style={styles.bold}>{'Chọn địa chỉ'}</Text>
         </View>
     }, [props.address])
 
     const shouldRenderFooter = useMemo(() => {
         if (!_.isEmpty(props?.price) && props?.address) {
             return (
-                <View style={footerStyleProps}>
+                <View style={styles.footer}>
                     <TouchableOpacity
                         onPress={goConfirm}
-                        style={priceButtonStyleProps}
+                        style={styles.priceButton}
                     >
                         <View>
                             {
                                 (props?.promotion && props?.price?.finalCost !== props?.price?.cost) ?
-                                    <Text.H4 style={[textPriceStyleProps, textPricePromotionStyleProps]}>{formatPrice(props?.price?.cost)} {textVND}</Text.H4> : null
+                                    <Text.H4 style={[styles.price, styles.pricePromotion]}>{formatPrice(props?.price?.cost)} {'VND'}</Text.H4> : null
                             }
-                            <Text.H4 style={textPriceStyleProps}>{formatPrice(props.price?.finalCost)} {textVND}/{props.duration}h</Text.H4>
+                            <Text.H4 style={styles.price}>{formatPrice(props.price?.finalCost)} {'VND'}/{props.duration}h</Text.H4>
                         </View>
-                        <Text.H4 style={textPriceStyleProps}>{textContinue}</Text.H4>
+                        <Text.H4 style={styles.price}>{'Tiếp theo'}</Text.H4>
                     </TouchableOpacity>
                 </View>
             )
@@ -130,17 +131,17 @@ function Booking({
     return (
         <>
             <KeyboardAware
-                style={containerProps}
+                style={styles.container}
                 showsVerticalScrollIndicator={false}
                 {...keyboardProps}
             >
                 {/* Address */}
-                <Text style={addressStyle} {...textProps}>{textAddress}</Text>
-                <View style={containerAddress} {...viewContainerProps}>
-                    <View style={contentAddress} {...viewContentProps}>
+                <Text style={styles.title} {...textProps}>{textAddress || 'Địa chỉ'}</Text>
+                <View style={styles.contentAddress} {...viewContainerProps}>
+                    <View style={{ flexDirection: 'row', flex: 10 }} {...viewContentProps}>
                         <Image
                             cached
-                            style={imageAddressStyle}
+                            style={styles.icon}
                             source={locationImageProps ? locationImageProps : ''}
                             {...imageProps}
                         />
@@ -153,12 +154,12 @@ function Booking({
                         style={touchableStyle}
                         {...touchableProps}
                     >
-                        <Text style={changeAddress} {...textTouchProps}>{textChangeAddress}</Text>
+                        <Text style={styles.changeAddress} {...textTouchProps}>{textChangeAddress || 'Thay đổi'}</Text>
                     </TouchableOpacity>
                 </View>
 
                 {/* Duration */}
-                <Text style={durationStyle} {...textProps}>{textDuration}</Text>
+                <Text style={styles.title} {...textProps}>{'Thời lượng'}</Text>
                 <Duration
                     duration={valueDurationProps ? valueDurationProps : 3}
                     changeDuration={(value) => props?.changeDuration(value)}
@@ -166,7 +167,7 @@ function Booking({
                 />
 
                 {/* Time */}
-                <Text style={timeStyle} {...textProps}>{textTime}</Text>
+                <Text style={styles.title} {...textProps}>{textTime || 'Chọn thời gian làm việc'}</Text>
                 <PickerDate
                     date={dateProps ? dateProps : dateDefault}
                     onChange={(date) => props?.changeDateTime(date)}
@@ -181,7 +182,7 @@ function Booking({
                 />
 
                 {/* Note */}
-                <Text style={noteStyle} {...textProps}>{textNote}</Text>
+                <Text style={styles.title} {...textProps}>{textNote || 'Ghi chú cho người làm'}</Text>
                 <Input
                     onChangeText={(text) => handleChangeTaskNote(text)}
                     onBlur={handleSaveTaskNote}
@@ -189,7 +190,7 @@ function Booking({
                     multiline={true}
                     numberOfLines={12}
                     placeholder={placeholder || 'Bạn có yêu cầu gì thêm, hãy nhập ở đây nhé!'}
-                    style={inputNoteStyle}
+                    style={styles.inputNote}
                     {...inputProps}
                 />
             </KeyboardAware>
