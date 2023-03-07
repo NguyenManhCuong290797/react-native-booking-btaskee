@@ -1,6 +1,6 @@
 {
   "name": "react-native-booking-house-cleaning",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A single / multiple, categorizable, customizable, localizable and searchable item booking component for react native which supports both Android & iOS.",
   "keywords": [
     "booking",

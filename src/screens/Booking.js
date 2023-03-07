@@ -159,7 +159,7 @@ function Booking({
                 </View>
 
                 {/* Duration */}
-                <Text style={styles.title} {...textProps}>{'Thời lượng'}</Text>
+                <Text style={styles.title} {...textProps}>{textDuration || 'Thời lượng'}</Text>
                 <Duration
                     duration={valueDurationProps ? valueDurationProps : 3}
                     changeDuration={(value) => props?.changeDuration(value)}
