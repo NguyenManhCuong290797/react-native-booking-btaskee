@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { COLOR } from '../constants';
-import { Spacing } from '@momo-platform/component-kits';
+import { COLOR, Spacing } from '../constants';
 
 export default StyleSheet.create({
   container: {
@@ -11,6 +10,9 @@ export default StyleSheet.create({
   title: {
     marginVertical: Spacing.L,
     fontWeight: 'bold',
+    fontSize: 16
+  },
+  textH4:{
     fontSize: 16
   },
   contentAddress: {
@@ -60,6 +62,11 @@ export default StyleSheet.create({
   },
   inputNote: {
     height: 150,
-    padding: Spacing.S
+    padding: Spacing.S,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: COLOR.borderColor,
+    paddingTop: 16,
+    fontSize: 16
   },
 });

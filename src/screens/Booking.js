@@ -10,7 +10,6 @@ import React, {
 import moment from 'moment';
 import _ from 'lodash';
 import { location } from '../assets/images/index';
-import { Spacing, Text, Image, Input, TouchableOpacity } from '@momo-platform/component-kits';
 import {
     View,
     SafeAreaView,
@@ -19,6 +18,7 @@ import {
     Dimensions,
     ScrollView,
     Modal,
+    TouchableOpacity,
     ActivityIndicator,
     BackHandler,
     Platform,
@@ -26,7 +26,7 @@ import {
 } from 'react-native';
 import { formatPrice } from '../helper/index';
 import { Duration, KeyboardAware, PickerTime, PickerDate } from '../components';
-import { COLOR } from '../constants/index';
+import { COLOR, Spacing } from '../constants/index';
 const { height: WINDOW_HEIGHT } = Dimensions.get('window');
 import styles from './styles';
 
@@ -118,11 +118,11 @@ function Booking({
                         <View>
                             {
                                 (props?.promotion && props?.price?.finalCost !== props?.price?.cost) ?
-                                    <Text.H4 style={[styles.price, styles.pricePromotion]}>{formatPrice(props?.price?.cost)} {textVND || 'VND'}</Text.H4> : null
+                                    <Text style={[styles.price, styles.pricePromotion, styles.textH4]}>{formatPrice(props?.price?.cost)} {textVND || 'VND'}</Text> : null
                             }
-                            <Text.H4 style={styles.price}>{formatPrice(props?.price?.finalCost)} {textVND || 'VND'}/{props?.duration}{'h'}</Text.H4>
+                            <Text style={[styles.price, styles.textH4]}>{formatPrice(props?.price?.finalCost)} {textVND || 'VND'}/{props?.duration}{'h'}</Text>
                         </View>
-                        <Text.H4 style={styles.price}>{textContinue || 'Tiếp theo'}</Text.H4>
+                        <Text style={[styles.price, styles.textH4]}>{textContinue || 'Tiếp theo'}</Text>
                     </TouchableOpacity>
                 </View>
             )
@@ -185,7 +185,7 @@ function Booking({
 
                 {/* Note */}
                 <Text style={styles.title} {...textProps}>{textNote || 'Ghi chú cho người làm'}</Text>
-                <Input
+                <TextInput
                     onChangeText={(text) => handleChangeTaskNote(text)}
                     onBlur={handleSaveTaskNote}
                     defaultValue={props.note ? props.note : ''}
