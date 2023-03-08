@@ -24,6 +24,7 @@ import {
     Platform,
     StyleSheet,
 } from 'react-native';
+import { formatPrice } from '../helper/index';
 import { Duration, KeyboardAware, PickerTime, PickerDate } from '../components';
 import { COLOR } from '../constants/index';
 const { height: WINDOW_HEIGHT } = Dimensions.get('window');
