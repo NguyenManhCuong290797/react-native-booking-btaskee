@@ -129,5 +129,18 @@ export default StyleSheet.create({
   textTypeHouse: {
     marginHorizontal: Spacing.L
   },
+  dateInputStyle: {
+    backgroundColor: COLOR.lightGrey,
+    borderWidth: 1,
+    height: 44,
+    borderRadius: 4,
+    borderColor: COLOR.borderColor,
+    marginRight: 4,
+  },
+  dateTextStyle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  containerDatePickerStyle: { width: 100 },
 
 });
