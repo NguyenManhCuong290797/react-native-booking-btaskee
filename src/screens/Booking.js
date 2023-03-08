@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import moment from 'moment';
 import _ from 'lodash';
+import { location } from '../assets/images/index';
 import { Spacing, Text, Image, Input, TouchableOpacity } from '@momo-platform/component-kits';
 import {
     View,
@@ -116,11 +117,11 @@ function Booking({
                         <View>
                             {
                                 (props?.promotion && props?.price?.finalCost !== props?.price?.cost) ?
-                                    <Text.H4 style={[styles.price, styles.pricePromotion]}>{formatPrice(props?.price?.cost)} {'VND'}</Text.H4> : null
+                                    <Text.H4 style={[styles.price, styles.pricePromotion]}>{formatPrice(props?.price?.cost)} {textVND || 'VND'}</Text.H4> : null
                             }
-                            <Text.H4 style={styles.price}>{formatPrice(props.price?.finalCost)} {'VND'}/{props.duration}h</Text.H4>
+                            <Text.H4 style={styles.price}>{formatPrice(props?.price?.finalCost)} {textVND || 'VND'}/{props?.duration}{'h'}</Text.H4>
                         </View>
-                        <Text.H4 style={styles.price}>{'Tiếp theo'}</Text.H4>
+                        <Text.H4 style={styles.price}>{textContinue || 'Tiếp theo'}</Text.H4>
                     </TouchableOpacity>
                 </View>
             )
@@ -142,7 +143,7 @@ function Booking({
                         <Image
                             cached
                             style={styles.icon}
-                            source={locationImageProps ? locationImageProps : ''}
+                            source={location ? location : ''}
                             {...imageProps}
                         />
                         {
@@ -161,7 +162,7 @@ function Booking({
                 {/* Duration */}
                 <Text style={styles.title} {...textProps}>{textDuration || 'Thời lượng'}</Text>
                 <Duration
-                    duration={valueDurationProps ? valueDurationProps : 3}
+                    duration={props?.duration ? props?.duration : 3}
                     changeDuration={(value) => props?.changeDuration(value)}
                     {...durationProps}
                 />
@@ -169,15 +170,15 @@ function Booking({
                 {/* Time */}
                 <Text style={styles.title} {...textProps}>{textTime || 'Chọn thời gian làm việc'}</Text>
                 <PickerDate
-                    date={dateProps ? dateProps : dateDefault}
+                    date={props?.date ? props?.date : dateDefault}
                     onChange={(date) => props?.changeDateTime(date)}
                     {...dateTimeProps}
                 />
 
                 <PickerTime
-                    date={dateProps ? dateProps : dateDefault}
+                    date={props?.date ? props?.date : dateDefault}
                     onChange={(date) => props?.changeDateTime(date)}
-                    navigator={navigatorProps ? navigatorProps : ''}
+                    navigator={props?.navigator ? props?.navigator : ''}
                     {...dateTimeProps}
                 />
 
@@ -186,7 +187,7 @@ function Booking({
                 <Input
                     onChangeText={(text) => handleChangeTaskNote(text)}
                     onBlur={handleSaveTaskNote}
-                    defaultValue={noteProps ? noteProps : ''}
+                    defaultValue={props.note ? props.note : ''}
                     multiline={true}
                     numberOfLines={12}
                     placeholder={placeholder || 'Bạn có yêu cầu gì thêm, hãy nhập ở đây nhé!'}
